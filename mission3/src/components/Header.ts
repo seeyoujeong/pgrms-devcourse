@@ -1,11 +1,12 @@
-export default class Header {
-  $parent: HTMLElement;
-  $target: HTMLElement;
+import Component from "./Component";
 
-  constructor($parent: HTMLElement) {
-    this.$parent = $parent;
+export default class Header extends Component {
+  protected $target: HTMLElement;
+
+  constructor(protected $parent: HTMLElement) {
+    super($parent);
     this.$target = document.createElement("header");
-    this.$parent.append(this.$target);
+    $parent.append(this.$target);
 
     this.render();
   }
