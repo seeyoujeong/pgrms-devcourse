@@ -2,8 +2,8 @@ export default class TodoForm {
   $target: HTMLElement;
 
   constructor(
-    public $parent: HTMLElement,
-    public addItem: (text: string) => void
+    protected $parent: HTMLElement,
+    protected addItem: (text: string) => void
   ) {
     this.$target = document.createElement("form");
     this.$target.className = "todoForm";
@@ -14,8 +14,9 @@ export default class TodoForm {
     this.$target.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      const $input: HTMLInputElement =
-        document.querySelector("input[name=todo]")!;
+      const $input: HTMLInputElement = document.querySelector(
+        "input[name=todoInput]"
+      )!;
       const text = $input.value;
 
       if (text.length > 1) {
@@ -27,7 +28,7 @@ export default class TodoForm {
 
   render() {
     this.$target.innerHTML = `
-      <input type="text" name="todo">
+      <input type="text" name="todoInput">
       <button>add</button>
     `;
   }

@@ -5,10 +5,9 @@ import { Todo } from "./types/TodoAppTypes";
 
 export default class App {
   state: Todo[];
-  todoForm: TodoForm;
   todoList: TodoList;
 
-  constructor(public $parent: HTMLElement) {
+  constructor(protected $parent: HTMLElement) {
     const $target = document.createElement("main");
     $parent.prepend($target);
 
@@ -32,7 +31,7 @@ export default class App {
     };
 
     new Header($target);
-    this.todoForm = new TodoForm($target, addItem);
+    new TodoForm($target, addItem);
     this.todoList = new TodoList($target, this.state, toggleItem, deleteItem);
   }
 

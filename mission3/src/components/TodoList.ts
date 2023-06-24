@@ -5,10 +5,10 @@ export default class TodoList {
   state: Todo[];
 
   constructor(
-    public $parent: HTMLElement,
-    public initialState: Todo[],
-    public toggleItem: (id: number) => void,
-    public deleteItem: (id: number) => void
+    protected $parent: HTMLElement,
+    protected initialState: Todo[] = [],
+    protected toggleItem: (id: number) => void,
+    protected deleteItem: (id: number) => void
   ) {
     this.$target = document.createElement("div");
     this.$target.className = "todoList";
