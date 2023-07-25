@@ -1,6 +1,4 @@
-import Header from "./components/Header";
-import TodoForm from "./components/TodoForm";
-import TodoList from "./components/TodoList";
+import { Header, TodoForm, TodoList } from "./components";
 import { Todo } from "./types/TodoAppTypes";
 
 export default class App {
