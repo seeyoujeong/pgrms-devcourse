@@ -28,7 +28,13 @@ export default class App {
       this.setState(nextState);
     };
 
-    new Header($target);
+    new Header({
+      element: {
+        $parent: $target,
+        $target: document.createElement("header"),
+      },
+      props: {},
+    });
     new TodoForm($target, addItem);
     this.todoList = new TodoList($target, this.state, toggleItem, deleteItem);
   }
