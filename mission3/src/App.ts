@@ -1,4 +1,5 @@
 import { Header, TodoForm, TodoList } from "./components";
+import { createTarget } from "./service/createTarget";
 import { Todo } from "./types/TodoAppTypes";
 
 export default class App {
@@ -10,11 +11,6 @@ export default class App {
     $parent.prepend($target);
 
     this.state = [{ text: "test", isCompleted: false }];
-
-    const addItem = (text: string) => {
-      const nextState = [...this.state, { text, isCompleted: false }];
-      this.setState(nextState);
-    };
 
     const toggleItem = (id: number) => {
       const nextState = this.state.map((todo, index) =>
@@ -31,11 +27,22 @@ export default class App {
     new Header({
       element: {
         $parent: $target,
-        $target: document.createElement("header"),
+        $target: createTarget("header", {}),
       },
       props: {},
     });
-    new TodoForm($target, addItem);
+    new TodoForm({
+      element: {
+        $parent: $target,
+        $target: createTarget("form", { class: "todoForm" }),
+      },
+      props: {
+        addItem: (text: string) => {
+          const nextState = [...this.state, { text, isCompleted: false }];
+          this.setState(nextState);
+        },
+      },
+    });
     this.todoList = new TodoList($target, this.state, toggleItem, deleteItem);
   }
 

@@ -1,16 +1,18 @@
-export default class TodoForm {
-  $target: HTMLElement;
+import Component from "../core/Component";
 
-  constructor(
-    protected $parent: HTMLElement,
-    protected addItem: (text: string) => void
-  ) {
-    this.$target = document.createElement("form");
-    this.$target.className = "todoForm";
-    $parent.append(this.$target);
+interface TodoFormProps {
+  addItem(text: string): void;
+}
 
-    this.render();
+export default class TodoForm extends Component<TodoFormProps> {
+  render() {
+    this.$target.innerHTML = `
+      <input type="text" name="todoInput">
+      <button>add</button>
+    `;
+  }
 
+  protected addEvent() {
     this.$target.addEventListener("submit", (e) => {
       e.preventDefault();
 
@@ -21,15 +23,8 @@ export default class TodoForm {
 
       if (text.length > 1) {
         $input.value = "";
-        addItem(text);
+        this.props.addItem(text);
       }
     });
-  }
-
-  render() {
-    this.$target.innerHTML = `
-      <input type="text" name="todoInput">
-      <button>add</button>
-    `;
   }
 }
