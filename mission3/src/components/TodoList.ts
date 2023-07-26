@@ -1,44 +1,29 @@
-import { Todo } from "../types/TodoAppTypes";
+import Component from "../core/Component";
+import { TodoState, ComponentProps } from "../types";
 
-export default class TodoList {
-  $target: HTMLElement;
-  state: Todo[];
+interface TodoListProps {
+  initialState: TodoState[];
+  toggleItem(id: number): void;
+  deleteItem(id: number): void;
+}
 
-  constructor(
-    protected $parent: HTMLElement,
-    protected initialState: Todo[] = [],
-    protected toggleItem: (id: number) => void,
-    protected deleteItem: (id: number) => void
-  ) {
-    this.$target = document.createElement("div");
-    this.$target.className = "todoList";
-    $parent.append(this.$target);
+export default class TodoList extends Component<TodoListProps> {
+  state: TodoState[];
 
-    this.state = initialState;
+  constructor({ element, props }: ComponentProps<TodoListProps>) {
+    super({ element, props });
 
-    this.render();
-
-    this.$target.addEventListener("click", ({ target }) => {
-      const $li = (target as HTMLLIElement).closest("li");
-      const id = Number($li?.dataset.id);
-
-      if ((target as HTMLLabelElement).closest("label")) {
-        toggleItem(id);
-      }
-
-      if ((target as HTMLButtonElement).closest("button")) {
-        deleteItem(id);
-      }
-    });
+    this.state = this.props.initialState;
   }
 
-  setState(nextState: Todo[]) {
+  setState(nextState: TodoState[]) {
     this.state = nextState;
     this.render();
   }
 
-  render() {
-    const list = this.state
+  protected render() {
+    const currentState = this.state ?? this.props.initialState;
+    const list = currentState
       .map(
         ({ text, isCompleted }, index) => `
           <li data-id="${index}">
@@ -53,5 +38,22 @@ export default class TodoList {
       .join("");
 
     this.$target.innerHTML = `<ul>${list}</ul>`;
+  }
+
+  protected addEvent() {
+    const { toggleItem, deleteItem } = this.props;
+
+    this.$target.addEventListener("click", ({ target }) => {
+      const $li = (target as HTMLLIElement).closest("li");
+      const id = Number($li?.dataset.id);
+
+      if ((target as HTMLLabelElement).closest("label")) {
+        toggleItem(id);
+      }
+
+      if ((target as HTMLButtonElement).closest("button")) {
+        deleteItem(id);
+      }
+    });
   }
 }

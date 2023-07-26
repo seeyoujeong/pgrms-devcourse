@@ -1,12 +1,4 @@
-interface Element {
-  $parent: HTMLElement;
-  $target: HTMLElement;
-}
-
-interface ComponentProps<Props> {
-  element: Element;
-  props: Props;
-}
+import { ComponentProps } from "../types";
 
 export default abstract class Component<Props> {
   protected $target: HTMLElement;

@@ -1,9 +1,9 @@
 import { Header, TodoForm, TodoList } from "./components";
 import { createTarget } from "./service/createTarget";
-import { Todo } from "./types/TodoAppTypes";
+import { TodoState } from "./types";
 
 export default class App {
-  state: Todo[];
+  state: TodoState[];
   todoList: TodoList;
 
   constructor(protected $parent: HTMLElement) {
@@ -11,18 +11,6 @@ export default class App {
     $parent.prepend($target);
 
     this.state = [{ text: "test", isCompleted: false }];
-
-    const toggleItem = (id: number) => {
-      const nextState = this.state.map((todo, index) =>
-        index === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
-      );
-      this.setState(nextState);
-    };
-
-    const deleteItem = (id: number) => {
-      const nextState = this.state.filter((_, index) => index !== id);
-      this.setState(nextState);
-    };
 
     new Header({
       element: {
@@ -43,10 +31,28 @@ export default class App {
         },
       },
     });
-    this.todoList = new TodoList($target, this.state, toggleItem, deleteItem);
+    this.todoList = new TodoList({
+      element: {
+        $parent: $target,
+        $target: createTarget("div", { class: "todoList" }),
+      },
+      props: {
+        initialState: this.state,
+        toggleItem: (id: number) => {
+          const nextState = this.state.map((todo, index) =>
+            index === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+          );
+          this.setState(nextState);
+        },
+        deleteItem: (id: number) => {
+          const nextState = this.state.filter((_, index) => index !== id);
+          this.setState(nextState);
+        },
+      },
+    });
   }
 
-  setState(nextState: Todo[]) {
+  setState(nextState: TodoState[]) {
     this.state = nextState;
     this.todoList.setState(this.state);
   }
