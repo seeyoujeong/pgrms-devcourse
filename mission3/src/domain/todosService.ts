@@ -18,7 +18,7 @@ export const todosService: TodosService = {
     }));
   },
   deleteItem(items, id) {
-    return items.filter((_, index) => id === index);
+    return items.filter((_, index) => id !== index);
   },
   countItem(items) {
     return {
