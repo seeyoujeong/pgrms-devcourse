@@ -1,5 +1,6 @@
 import { Header, TodoForm, TodoList } from "./components";
 import { createTarget } from "./service/createTarget";
+import { todosService } from "./domain/todosService";
 import { TodoState } from "./types";
 
 interface AppProps {
@@ -30,9 +31,8 @@ export default class App {
         $target: createTarget("form", { class: "todoForm" }),
       },
       props: {
-        addItem: (text: string) => {
-          const nextState = [...this.state, { text, isCompleted: false }];
-          this.setState(nextState);
+        addItem: (item: string) => {
+          this.setState(todosService.addItem(this.state, item));
         },
       },
     });
@@ -44,14 +44,10 @@ export default class App {
       props: {
         initialState: this.state,
         toggleItem: (id: number) => {
-          const nextState = this.state.map((todo, index) =>
-            index === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
-          );
-          this.setState(nextState);
+          this.setState(todosService.toggleItem(this.state, id));
         },
         deleteItem: (id: number) => {
-          const nextState = this.state.filter((_, index) => index !== id);
-          this.setState(nextState);
+          this.setState(todosService.deleteItem(this.state, id));
         },
       },
     });
