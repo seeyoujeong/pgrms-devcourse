@@ -22,7 +22,7 @@ export default class App {
     new Header({
       element: {
         $parent: this.$target,
-        $target: createTarget("header", {}),
+        $target: createTarget("header"),
       },
       props: {
         title: "Todo List",

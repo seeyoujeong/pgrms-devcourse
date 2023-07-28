@@ -3,7 +3,7 @@ interface Attributes {
 }
 
 interface CreateTargetProps {
-  (tag: string, attributes: Attributes): HTMLElement;
+  (tag: string, attributes?: Attributes): HTMLElement;
 }
 
 export const createTarget: CreateTargetProps = (tag, attributes = {}) => {
