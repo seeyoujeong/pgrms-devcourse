@@ -7,11 +7,7 @@ export const getStorageItem = <T = unknown>(
   try {
     const value = storage.getItem(key);
 
-    if (typeof value === "string") {
-      return JSON.parse(value);
-    }
-
-    return defaultValue;
+    return typeof value === "string" ? JSON.parse(value) : defaultValue;
   } catch (error) {
     console.log(error instanceof Error ? error.message : error);
     return defaultValue;
