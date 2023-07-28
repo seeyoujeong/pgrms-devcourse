@@ -23,7 +23,9 @@ export default class App {
         $parent: this.$target,
         $target: createTarget("header", {}),
       },
-      props: {},
+      props: {
+        title: "Todo List",
+      },
     });
     new TodoForm({
       element: {

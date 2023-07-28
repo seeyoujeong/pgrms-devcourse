@@ -1,9 +1,13 @@
 import Component from "../core/Component";
 
-export default class Header extends Component<object> {
+interface HeaderProps {
+  title: string;
+}
+
+export default class Header extends Component<HeaderProps> {
   protected render() {
     this.$target.innerHTML = `
-      <h1>Todo List</h1>
+      <h1>${this.props.title}</h1>
     `;
   }
 
