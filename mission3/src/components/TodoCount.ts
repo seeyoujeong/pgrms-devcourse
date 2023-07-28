@@ -1,10 +1,5 @@
 import Component from "../core/Component";
-import { ComponentProps } from "../types";
-
-interface TodoCountState {
-  completedCount: number;
-  totalCount: number;
-}
+import { ComponentProps, TodoCountState } from "../types";
 
 interface TodoCountProps {
   initialState: TodoCountState;

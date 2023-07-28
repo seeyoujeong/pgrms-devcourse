@@ -3,6 +3,11 @@ export interface TodoState {
   isCompleted: boolean;
 }
 
+export interface TodoCountState {
+  completedCount: number;
+  totalCount: number;
+}
+
 export interface Element {
   $parent: HTMLElement;
   $target: HTMLElement;
