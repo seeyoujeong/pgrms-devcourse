@@ -1,4 +1,4 @@
-import { Header, TodoForm, TodoList } from "./components";
+import { Header, TodoForm, TodoList, TodoCount } from "./components";
 import { createTarget } from "./service/createTarget";
 import { todosService } from "./domain/todosService";
 import { TodoState } from "./types";
@@ -11,6 +11,7 @@ export default class App {
   $target: HTMLElement;
   state: TodoState[];
   todoList: TodoList;
+  todoCount: TodoCount;
 
   constructor({ $parent }: AppProps) {
     this.$target = document.createElement("main");
@@ -53,10 +54,26 @@ export default class App {
         },
       },
     });
+    this.todoCount = new TodoCount({
+      element: {
+        $parent: this.$target,
+        $target: createTarget("div", { class: "todoCount" }),
+      },
+      props: {
+        initialState: {
+          completedCount: this.state.filter((item) => item.isCompleted).length,
+          totalCount: this.state.length,
+        },
+      },
+    });
   }
 
   setState(nextState: TodoState[]) {
     this.state = nextState;
     this.todoList.setState(this.state);
+    this.todoCount.setState({
+      completedCount: this.state.filter((item) => item.isCompleted).length,
+      totalCount: this.state.length,
+    });
   }
 }
