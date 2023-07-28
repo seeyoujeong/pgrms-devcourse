@@ -60,10 +60,7 @@ export default class App {
         $target: createTarget("div", { class: "todoCount" }),
       },
       props: {
-        initialState: {
-          completedCount: this.state.filter((item) => item.isCompleted).length,
-          totalCount: this.state.length,
-        },
+        initialState: todosService.countItem(this.state),
       },
     });
   }
@@ -71,9 +68,6 @@ export default class App {
   setState(nextState: TodoState[]) {
     this.state = nextState;
     this.todoList.setState(this.state);
-    this.todoCount.setState({
-      completedCount: this.state.filter((item) => item.isCompleted).length,
-      totalCount: this.state.length,
-    });
+    this.todoCount.setState(todosService.countItem(this.state));
   }
 }
