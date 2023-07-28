@@ -2,26 +2,31 @@ import { Header, TodoForm, TodoList } from "./components";
 import { createTarget } from "./service/createTarget";
 import { TodoState } from "./types";
 
+interface AppProps {
+  $parent: HTMLBodyElement;
+}
+
 export default class App {
+  $target: HTMLElement;
   state: TodoState[];
   todoList: TodoList;
 
-  constructor(protected $parent: HTMLElement) {
-    const $target = document.createElement("main");
-    $parent.prepend($target);
+  constructor({ $parent }: AppProps) {
+    this.$target = document.createElement("main");
+    $parent.prepend(this.$target);
 
     this.state = [{ text: "test", isCompleted: false }];
 
     new Header({
       element: {
-        $parent: $target,
+        $parent: this.$target,
         $target: createTarget("header", {}),
       },
       props: {},
     });
     new TodoForm({
       element: {
-        $parent: $target,
+        $parent: this.$target,
         $target: createTarget("form", { class: "todoForm" }),
       },
       props: {
@@ -33,7 +38,7 @@ export default class App {
     });
     this.todoList = new TodoList({
       element: {
-        $parent: $target,
+        $parent: this.$target,
         $target: createTarget("div", { class: "todoList" }),
       },
       props: {
