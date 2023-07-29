@@ -31,7 +31,7 @@ export default class App {
     new TodoForm({
       element: {
         $parent: this.$target,
-        $target: createTarget("form", { class: "todoForm" }),
+        $target: createTarget("form", { class: "todo-form" }),
       },
       props: {
         addItem: (item: string) => {

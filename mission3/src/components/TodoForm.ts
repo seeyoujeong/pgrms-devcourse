@@ -7,8 +7,8 @@ interface TodoFormProps {
 export default class TodoForm extends Component<TodoFormProps> {
   render() {
     this.$target.innerHTML = `
-      <input type="text" name="todoInput">
-      <button>add</button>
+      <input type="text" name="todoInput" class="todo-form__input">
+      <button class="todo-form__add-button">add</button>
     `;
   }
 
