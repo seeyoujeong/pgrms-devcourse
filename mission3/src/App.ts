@@ -1,6 +1,6 @@
 import { Header, TodoForm, TodoList, TodoCount } from "./components";
 import { createTarget } from "./service";
-import { todosService } from "./domain";
+import { todoStorage, todosService } from "./domain";
 import { TodoState } from "./types";
 
 interface AppProps {
@@ -17,7 +17,7 @@ export default class App {
     this.$target = document.createElement("main");
     $parent.prepend(this.$target);
 
-    this.state = [{ text: "test", isCompleted: false }];
+    this.state = todoStorage.getData();
 
     new Header({
       element: {
@@ -69,5 +69,6 @@ export default class App {
     this.state = nextState;
     this.todoList.setState(this.state);
     this.todoCount.setState(todosService.countItem(this.state));
+    todoStorage.setData(this.state);
   }
 }
