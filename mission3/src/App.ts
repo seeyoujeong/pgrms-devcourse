@@ -1,6 +1,6 @@
 import { Header, TodoForm, TodoList, TodoCount } from "./components";
 import { createTarget } from "./service";
-import { todosService } from "./domain/todosService";
+import { todosService } from "./domain";
 import { TodoState } from "./types";
 
 interface AppProps {
