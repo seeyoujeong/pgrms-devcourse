@@ -1,2 +1,2 @@
 export { createTarget } from "./createTarget";
-export { getStorageItem, setStorageItem } from "./storage";
+export { default as StorageService } from "./storage";

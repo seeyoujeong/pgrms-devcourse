@@ -1,9 +1,8 @@
+import { TodoState } from "../types";
+
 const storage = localStorage;
 
-export const getStorageItem = <T = unknown>(
-  key: string,
-  defaultValue: T
-): T => {
+const getStorageItem = <T = unknown>(key: string, defaultValue: T): T => {
   try {
     const value = storage.getItem(key);
 
@@ -14,6 +13,24 @@ export const getStorageItem = <T = unknown>(
   }
 };
 
-export const setStorageItem = <T = unknown>(key: string, value: T) => {
+const setStorageItem = <T = unknown>(key: string, value: T) => {
   storage.setItem(key, JSON.stringify(value));
 };
+
+export default class StorageService<T> {
+  #storageKey;
+  #defaultValue;
+
+  constructor(storageKey: string, defaultValue: T) {
+    this.#storageKey = storageKey;
+    this.#defaultValue = defaultValue;
+  }
+
+  getData() {
+    return getStorageItem(this.#storageKey, this.#defaultValue);
+  }
+
+  setData(data: TodoState[]) {
+    return setStorageItem(this.#storageKey, data);
+  }
+}
