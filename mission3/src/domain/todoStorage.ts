@@ -16,7 +16,7 @@ class StorageService<T> {
     return getStorageItem(this.#storageKey, this.#defaultValue);
   }
 
-  setData(data: TodoState) {
+  setData(data: TodoState[]) {
     return setStorageItem(this.#storageKey, data);
   }
 }

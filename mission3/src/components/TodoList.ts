@@ -44,14 +44,14 @@ export default class TodoList extends Component<TodoListProps> {
     const { toggleItem, deleteItem } = this.props;
 
     this.$target.addEventListener("click", ({ target }) => {
-      const $li = (target as HTMLLIElement).closest("li");
+      const $li = (target as HTMLElement).closest("li");
       const id = Number($li?.dataset.id);
 
-      if ((target as HTMLLabelElement).closest("label")) {
+      if ((target as HTMLElement).closest("label")) {
         toggleItem(id);
       }
 
-      if ((target as HTMLButtonElement).closest("button")) {
+      if ((target as HTMLElement).closest("button")) {
         deleteItem(id);
       }
     });
