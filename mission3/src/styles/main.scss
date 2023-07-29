@@ -1,10 +1,11 @@
 @import "./components/todo-form";
 @import "./components/todo-list";
+@import "./mixins/margin";
 
 main {
-  margin-left: 20px;
+  @include margin($l: 20px);
 }
 
 .todoCount {
-  margin-left: 10px;
+  @include margin($l: 10px);
 }
