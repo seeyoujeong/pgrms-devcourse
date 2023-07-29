@@ -42,7 +42,7 @@ export default class App {
     this.todoList = new TodoList({
       element: {
         $parent: this.$target,
-        $target: createTarget("div", { class: "todoList" }),
+        $target: createTarget("div", { class: "todo-list" }),
       },
       props: {
         initialState: this.state,

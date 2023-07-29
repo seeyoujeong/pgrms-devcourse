@@ -26,18 +26,22 @@ export default class TodoList extends Component<TodoListProps> {
     const list = currentState
       .map(
         ({ text, isCompleted }, index) => `
-          <li data-id="${index}">
+          <li class="todo-list__item" data-id="${index}">
             <label>
-              <input type="checkbox" ${isCompleted && "checked"}>
-              <span>${isCompleted ? `<del>${text}</del>` : `${text}`}</span>
+              <input class="todo-list__input" type="checkbox" ${
+                isCompleted && "checked"
+              }>
+              <span class="todo-list__content">${
+                isCompleted ? `<del>${text}</del>` : `${text}`
+              }</span>
             </label>
-            <button>delete</button>
+            <button class="todo-list__delete-button">delete</button>
           </li>
         `
       )
       .join("");
 
-    this.$target.innerHTML = `<ul>${list}</ul>`;
+    this.$target.innerHTML = `<ul class="todo-list__list">${list}</ul>`;
   }
 
   protected addEvent() {

@@ -35,41 +35,41 @@ main {
   }
 }
 
-.todoList {
+.todo-list {
   margin-top: 20px;
   margin-bottom: 20px;
-}
 
-.todoList ul {
-  padding: 0;
-  margin: 0;
-  margin-left: 5px
-}
+  &__list {
+    padding: 0;
+    margin: 0;
+    margin-left: 5px;
+  }
 
-.todoList ul li {
-  padding: 0;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  height: 30px;
-}
+  &__item {
+    padding: 0;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    height: 30px;
+  }
 
-.todoList ul li span {
-  margin-right: 10px;
-}
+  &__content {
+    margin-right: 10px;
+  }
 
-.todoList ul li button {
-  font-size: 0.75rem;
-  border: 0;
-  border-radius: 20px;
-  margin-bottom: 2.5px;
-  padding: 5px 12px;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  transition: 0.3s;
-}
+  &__delete-button {
+    font-size: 0.75rem;
+    border: 0;
+    border-radius: 20px;
+    margin-bottom: 2.5px;
+    padding: 5px 12px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    transition: 0.3s;
 
-.todoList ul li button:hover {
-  box-shadow: rgba(0, 0, 0, 0.3) 1.95px 1.95px 2.6px;
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.3) 1.95px 1.95px 2.6px;
+    }
+  }
 }
 
 .todoCount {
