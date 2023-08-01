@@ -1,11 +1,12 @@
 @import "./components/todo-form";
 @import "./components/todo-list";
+@import "./components/todo-count";
 @import "./mixins/margin";
+
+* {
+  box-sizing: border-box;
+}
 
 main {
   @include margin($l: 20px);
-}
-
-.todoCount {
-  @include margin($l: 10px);
 }

@@ -24,7 +24,12 @@ export default class TodoCount extends Component<TodoCountProps> {
       this.state ?? this.props.initialState;
 
     this.$target.innerHTML = `
-      Completed: ${completedCount} / Total: ${totalCount}
+      <div>Completed: ${completedCount} / Total: ${totalCount}</div>
+      <div class="todo-count__progress-bar">
+        <div class="todo-count__progress-fill" style="--percent: ${
+          (completedCount / totalCount) * 100
+        }"></div>
+      </div>
     `;
   }
 

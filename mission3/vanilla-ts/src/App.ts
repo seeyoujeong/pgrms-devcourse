@@ -57,7 +57,7 @@ export default class App {
     this.todoCount = new TodoCount({
       element: {
         $parent: this.$target,
-        $target: createTarget("div", { class: "todoCount" }),
+        $target: createTarget("div", { class: "todo-count" }),
       },
       props: {
         initialState: todosService.countItem(this.state),

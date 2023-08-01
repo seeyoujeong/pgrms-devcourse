@@ -1,0 +1,21 @@
+.todo-count {
+  @include margin($l: 10px);
+
+  &__progress-bar {
+    position: relative;
+    margin-top: 10px;
+    height: 10px;
+    width: 170px;
+    border-radius: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  }
+
+  &__progress-fill {
+    position: absolute;
+    height: 8px;
+    width: calc(var(--percent) * 1%);
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+  }
+}
