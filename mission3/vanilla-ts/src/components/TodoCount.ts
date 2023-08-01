@@ -27,7 +27,7 @@ export default class TodoCount extends Component<TodoCountProps> {
     this.$target.innerHTML = `
       <div>Completed: ${completedCount} / Total: ${totalCount}</div>
       <div class="todo-count__progress-bar">
-        <div class="todo-count__progress-fill" style="--percent: ${percent}"></div>
+        <div class="todo-count__progress-fill" style="--percent: ${percent}%"></div>
       </div>
     `;
   }

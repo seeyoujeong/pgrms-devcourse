@@ -14,7 +14,7 @@
   &__progress-fill {
     position: absolute;
     height: 8px;
-    width: calc(var(--percent) * 1%);
+    width: var(--percent);
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 15px;
   }
