@@ -1,5 +1,3 @@
-import { TodoState } from "../types";
-
 const storage = localStorage;
 
 const getStorageItem = <T = unknown>(key: string, defaultValue: T): T => {
@@ -8,7 +6,7 @@ const getStorageItem = <T = unknown>(key: string, defaultValue: T): T => {
 
     return typeof value === "string" ? JSON.parse(value) : defaultValue;
   } catch (error) {
-    console.log(error instanceof Error ? error.message : error);
+    console.error(error instanceof Error ? error.message : error);
     return defaultValue;
   }
 };
@@ -30,7 +28,7 @@ export default class StorageService<T> {
     return getStorageItem(this.#storageKey, this.#defaultValue);
   }
 
-  setData(data: TodoState[]) {
+  setData(data: T) {
     return setStorageItem(this.#storageKey, data);
   }
 }
